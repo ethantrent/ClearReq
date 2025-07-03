@@ -1,5 +1,8 @@
 1. Overview
-The AI-Driven Requirements Analyzer is a web application that enables users to upload software requirements documents (text or PDF), processes them through a machine learning pipeline, and provides extracted, classified, and improved requirements using both traditional ML libraries (scikit-learn, pandas, NumPy) and Generative AI (LLMs). The app exposes its ML predictions through a REST API and presents results in a responsive, accessible web interface.
+The AI-Driven Requirements Analyzer is a web application that enables users to upload software requirements documents (text or PDF), 
+processes them through a machine learning pipeline, and provides extracted, classified, and improved requirements using both traditional 
+ML libraries (scikit-learn, pandas, NumPy) and Generative AI (LLMs). The app exposes its ML predictions through a REST API and presents 
+results in a responsive, accessible web interface.
 
 2. Goals & Objectives
 Automate the extraction and classification of requirements from documents.
