@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearReq Results Page Wireframe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .wireframe {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border: 2px solid #333;
+        }
+        .header {
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav {
+            background: #f8fafc;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .breadcrumb {
+            background: #f0f9ff;
+            padding: 10px;
+            border: 1px solid #2563eb;
+            margin-bottom: 20px;
+        }
+        .summary-card {
+            background: #f0fdf4;
+            padding: 20px;
+            border: 1px solid #059669;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .metric {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .filters {
+            background: #f8fafc;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        .results-table {
+            background: #f8fafc;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr 1fr 1fr 2fr;
+            gap: 10px;
+            background: #2563eb;
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr 1fr 1fr 2fr;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidebar {
+            background: #fff7ed;
+            padding: 20px;
+            border: 1px solid #ea580c;
+        }
+        .action-buttons {
+            background: #f8fafc;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .box {
+            border: 1px solid #333;
+            padding: 10px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <div class="header">
+            <h1>ClearReq</h1>
+            <p>AI-Driven Requirements Analyzer</p>
+        </div>
+        
+        <div class="nav">
+            <span class="box">Home</span>
+            <span class="box">Results</span>
+            <span class="box">History</span>
+        </div>
+        
+        <div class="breadcrumb">
+            <span>Home > Results</span>
+        </div>
+        
+        <div class="summary-card">
+            <div class="metric">
+                <h3>15</h3>
+                <p>Total Requirements</p>
+            </div>
+            <div class="metric">
+                <h3>12</h3>
+                <p>Functional</p>
+            </div>
+            <div class="metric">
+                <h3>3</h3>
+                <p>Non-Functional</p>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <span class="box">Sort by: ID</span>
+            <span class="box">Filter: All</span>
+            <span class="box">Search...</span>
+        </div>
+        
+        <div class="main-content">
+            <div class="results-table">
+                <h3>Requirements Analysis Results</h3>
+                <div class="table-header">
+                    <div>ID</div>
+                    <div>Requirement Text</div>
+                    <div>Type</div>
+                    <div>Confidence</div>
+                    <div>Ambiguity</div>
+                    <div>AI Suggestions</div>
+                </div>
+                <div class="table-row">
+                    <div>REQ-001</div>
+                    <div>The system shall allow users to log in...</div>
+                    <div>Functional</div>
+                    <div>95%</div>
+                    <div>Low</div>
+                    <div>Add password complexity...</div>
+                </div>
+                <div class="table-row">
+                    <div>REQ-002</div>
+                    <div>The system must be fast...</div>
+                    <div>Non-Functional</div>
+                    <div>87%</div>
+                    <div>High</div>
+                    <div>Define specific performance...</div>
+                </div>
+                <div class="table-row">
+                    <div>REQ-003</div>
+                    <div>Users can upload files...</div>
+                    <div>Functional</div>
+                    <div>92%</div>
+                    <div>Medium</div>
+                    <div>Specify file size limits...</div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>Ambiguity Highlights</h3>
+                <div class="box">
+                    <strong>REQ-002:</strong> "The system must be fast" - needs specific metrics
+                </div>
+                <div class="box">
+                    <strong>REQ-005:</strong> "User-friendly interface" - subjective term
+                </div>
+                <div class="box">
+                    <strong>REQ-008:</strong> "Secure data handling" - lacks specific requirements
+                </div>
+                
+                <h3>Quick Actions</h3>
+                <div class="box">Export to PDF</div>
+                <div class="box">Copy All Results</div>
+                <div class="box">Save Analysis</div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <span class="box" style="display: inline-block; padding: 10px 20px; background: #059669; color: white;">Download Results</span>
+            <span class="box" style="display: inline-block; padding: 10px 20px; background: #2563eb; color: white;">Copy to Clipboard</span>
+            <span class="box" style="display: inline-block; padding: 10px 20px; background: #ea580c; color: white;">New Analysis</span>
+        </div>
+    </div>
+</body>
+</html> 
