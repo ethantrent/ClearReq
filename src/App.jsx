@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Logo from './components/Logo';
-import ClearReqLogo from './assets/ClearReq-Logo.png';
+import ClearReqLogo from '../site-plan/ClearReq-Logo.png';
 
 function App() {
   // File upload state
@@ -196,10 +196,19 @@ function App() {
   const Header = () => (
     <header className="sticky top-0 z-30 bg-white/70 backdrop-blur shadow-sm border-b border-gray-100">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <span className="text-2xl font-extrabold tracking-tight text-[#2563eb] select-none">ClearReq</span>
+        <div className="flex items-center space-x-2">
+          <Logo className="w-8 h-8 text-[#2563eb]" color="#2563eb" />
+          <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-[#2563eb] via-[#059669] to-[#a855f7] bg-clip-text text-transparent select-none">ClearReq</span>
+        </div>
         <nav className="space-x-6 text-gray-700 font-medium">
-          <button onClick={() => setCurrentPage('home')} className={`hover:text-[#2563eb] transition ${currentPage==='home'?'text-[#2563eb]':''}`}>Home</button>
-          <button onClick={() => setCurrentPage('history')} className={`hover:text-[#2563eb] transition ${currentPage==='history'?'text-[#2563eb]':''}`}>History</button>
+          <button 
+            onClick={() => setCurrentPage('home')} 
+            className={`bg-transparent border-none focus:outline-none hover:text-[#2563eb] transition ${currentPage==='home'?'text-[#2563eb]':''}`}
+          >Home</button>
+          <button 
+            onClick={() => setCurrentPage('history')} 
+            className={`bg-transparent border-none focus:outline-none hover:text-[#2563eb] transition ${currentPage==='history'?'text-[#2563eb]':''}`}
+          >History</button>
           <a href="#features" className="hover:text-[#2563eb] transition">Features</a>
           <a href="#footer" className="hover:text-[#2563eb] transition">About</a>
         </nav>
@@ -237,12 +246,12 @@ function App() {
           </div>
           {/* Illustration */}
           <div className="flex-1 flex justify-center">
-            <div className="w-72 h-72 bg-white/80 rounded-2xl flex items-center justify-center shadow-xl border border-gray-100">
+            <div className="w-[432px] h-[432px] bg-white/80 rounded-2xl flex items-center justify-center shadow-xl border border-gray-100">
               <img 
-                src={ClearReqLogo} 
-                alt="ClearReq Logo" 
-                style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }} 
-                className="block mx-auto bg-white rounded-xl shadow-lg p-4"
+                src={ClearReqLogo}
+                alt="ClearReq Transparent Logo"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                className="block mx-auto rounded-xl shadow-lg p-4 border border-gray-200 bg-white/70"
               />
             </div>
           </div>
@@ -294,30 +303,30 @@ function App() {
 
   // Render Results Page
   const renderResultsPage = () => (
-    <div className="flex-1 py-8 px-4">
+    <div className="flex-1 py-8 px-4 bg-gradient-to-br from-[#e0e7ff] via-[#f0f9ff] to-[#f8fafc]">
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumb */}
-        <div className="bg-[#f0f9ff] p-4 rounded-lg border border-[#2563eb] mb-6">
+        <div className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-4 mb-6">
           <span className="text-[#2563eb]">Home &gt; Results</span>
         </div>
 
         {/* Summary Card */}
-        <div className="bg-[#f0fdf4] p-6 rounded-lg border border-[#059669] mb-6">
+        <div className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4 text-gray-800">Analysis Summary</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-white rounded-lg border">
+            <div className="text-center p-4 bg-white/80 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="text-2xl font-bold text-[#2563eb]">{analysisResult?.summary.total || 0}</h3>
               <p className="text-gray-600">Total Requirements</p>
             </div>
-            <div className="text-center p-4 bg-white rounded-lg border">
+            <div className="text-center p-4 bg-white/80 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="text-2xl font-bold text-[#059669]">{analysisResult?.summary.functional || 0}</h3>
               <p className="text-gray-600">Functional</p>
             </div>
-            <div className="text-center p-4 bg-white rounded-lg border">
+            <div className="text-center p-4 bg-white/80 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="text-2xl font-bold text-[#ea580c]">{analysisResult?.summary.nonFunctional || 0}</h3>
               <p className="text-gray-600">Non-Functional</p>
             </div>
-            <div className="text-center p-4 bg-white rounded-lg border">
+            <div className="text-center p-4 bg-white/80 rounded-xl border border-gray-200 shadow-sm">
               <h3 className="text-2xl font-bold text-[#dc2626]">{analysisResult?.summary.ambiguities || 0}</h3>
               <p className="text-gray-600">Ambiguities</p>
             </div>
@@ -325,7 +334,7 @@ function App() {
         </div>
 
         {/* Filters */}
-        <div className="bg-[#f8fafc] p-4 rounded-lg border mb-6 flex flex-wrap gap-4">
+        <div className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-4 mb-6 flex flex-wrap gap-4">
           <select className="px-3 py-2 border rounded-lg">
             <option>Sort by: ID</option>
             <option>Sort by: Type</option>
@@ -346,7 +355,7 @@ function App() {
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Results Table */}
-          <div className="lg:col-span-2 bg-white rounded-lg shadow p-6">
+          <div className="lg:col-span-2 bg-white/60 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-6">
             <h3 className="text-lg font-semibold mb-4 text-gray-800">Requirements Analysis Results</h3>
             <div className="overflow-x-auto">
               <table className="min-w-full">
@@ -393,11 +402,11 @@ function App() {
           </div>
 
           {/* Sidebar */}
-          <div className="bg-[#fff7ed] rounded-lg border border-[#ea580c] p-6">
+          <div className="bg-white/70 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-6">
             <h3 className="text-lg font-semibold mb-4 text-gray-800">Ambiguity Highlights</h3>
             <div className="space-y-3 mb-6">
               {analysisResult?.ambiguities.map(amb => (
-                <div key={amb.id} className="bg-white p-3 rounded border">
+                <div key={amb.id} className="bg-white/90 p-3 rounded border border-gray-200 shadow-sm">
                   <strong className="text-[#ea580c]">{amb.id}:</strong> {amb.text}
                 </div>
               ))}
@@ -445,7 +454,7 @@ function App() {
 
   // Render History Page
   const renderHistoryPage = () => (
-    <div className="flex-1 py-8 px-4">
+    <div className="flex-1 py-8 px-4 bg-gradient-to-br from-[#e0e7ff] via-[#f0f9ff] to-[#f8fafc]">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Analysis History</h2>
@@ -458,13 +467,13 @@ function App() {
         </div>
         
         {history.length === 0 ? (
-          <div className="bg-[#f8fafc] rounded-xl shadow p-8 flex flex-col items-center">
+          <div className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-8 flex flex-col items-center">
             <span className="text-4xl text-gray-300 mb-2">🕒</span>
             <p className="text-gray-400 text-lg font-medium">No analysis history yet</p>
             <p className="text-gray-400 text-sm mt-2">Upload a document to start analyzing requirements</p>
           </div>
         ) : (
-          <div className="bg-[#f8fafc] rounded-xl shadow p-4">
+          <div className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-4">
             <ul className="space-y-2">
               {history.map(item => (
                 <li key={item.id} className="border-b last:border-b-0 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between">
