@@ -2,12 +2,20 @@ import PyPDF2
 import io
 from fastapi import UploadFile, HTTPException
 import re
+from typing import List
+
+SUPPORTED_EXTENSIONS = ['.txt', '.pdf']
+REQUIREMENT_KEYWORDS = [
+    'shall', 'should', 'must', 'will', 'can', 'may',
+    'system', 'user', 'shall be', 'must be', 'should be',
+    'the system', 'the user', 'users can', 'system shall'
+]
 
 class FileProcessor:
     """Service for processing uploaded files and extracting text content"""
     
     def __init__(self):
-        self.supported_extensions = ['.txt', '.pdf']
+        self.supported_extensions = SUPPORTED_EXTENSIONS
     
     async def extract_text(self, file: UploadFile) -> str:
         """
@@ -80,7 +88,7 @@ class FileProcessor:
         
         return text.strip()
     
-    def extract_sentences(self, text: str) -> list:
+    def extract_sentences(self, text: str) -> List[str]:
         """
         Split text into sentences for requirement extraction
         """
@@ -93,16 +101,10 @@ class FileProcessor:
         """
         Basic heuristic to identify if a sentence looks like a requirement
         """
-        requirement_keywords = [
-            'shall', 'should', 'must', 'will', 'can', 'may',
-            'system', 'user', 'shall be', 'must be', 'should be',
-            'the system', 'the user', 'users can', 'system shall'
-        ]
-        
         sentence_lower = sentence.lower()
         
         # Check for requirement keywords
-        for keyword in requirement_keywords:
+        for keyword in REQUIREMENT_KEYWORDS:
             if keyword in sentence_lower:
                 return True
         
