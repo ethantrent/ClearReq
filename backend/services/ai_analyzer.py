@@ -163,7 +163,7 @@ class AIAnalyzer:
         Use Hugging Face Inference API to enhance requirements with suggestions and ambiguity detection.
         """
         # Changed to a public, API-enabled model
-        model_id = "google/flan-t5-large"
+        model_id = "bigscience/bloomz-560m"
         api_url = f"https://api-inference.huggingface.co/models/{model_id}"
         headers = {"Authorization": f"Bearer {api_key}"}
         enhanced_requirements = []
