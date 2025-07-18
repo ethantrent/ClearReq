@@ -162,8 +162,8 @@ class AIAnalyzer:
         """
         Use Hugging Face Inference API to enhance requirements with suggestions and ambiguity detection.
         """
-        # You can change the model below to any suitable text generation model
-        model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+        # Changed to a public, API-enabled model
+        model_id = "google/flan-t5-large"
         api_url = f"https://api-inference.huggingface.co/models/{model_id}"
         headers = {"Authorization": f"Bearer {api_key}"}
         enhanced_requirements = []
@@ -183,12 +183,10 @@ class AIAnalyzer:
                 response = requests.post(api_url, headers=headers, json={"inputs": prompt}, timeout=30)
                 response.raise_for_status()
                 import json as _json
-                # Hugging Face returns a list of generated texts
                 content = response.json()
                 if isinstance(content, list) and content and 'generated_text' in content[0]:
                     result = _json.loads(content[0]['generated_text'])
                 else:
-                    # fallback: try to parse the whole response as JSON
                     result = _json.loads(content)
                 ambiguous_terms = result.get("ambiguous_terms", [])
                 ambiguity = result.get("ambiguity", "Medium")
