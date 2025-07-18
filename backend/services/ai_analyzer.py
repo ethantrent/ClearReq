@@ -161,10 +161,9 @@ class AIAnalyzer:
     async def _enhance_with_huggingface(self, requirements: List[Requirement], api_key: str) -> List[Requirement]:
         """
         Use Hugging Face Inference API to enhance requirements with suggestions and ambiguity detection.
+        Try 'tiiuae/falcon-7b-instruct' first, fall back to 'gpt2' if unavailable.
         """
-        # Changed to a public, API-enabled model
-        model_id = "google/flan-t5-base"
-        api_url = f"https://api-inference.huggingface.co/models/{model_id}"
+        model_ids = ["tiiuae/falcon-7b-instruct", "gpt2"]
         headers = {"Authorization": f"Bearer {api_key}"}
         enhanced_requirements = []
         for req in requirements:
@@ -179,22 +178,30 @@ class AIAnalyzer:
                 "3. Suggest a concrete, measurable improvement.\n"
                 "Respond in JSON with keys: ambiguous_terms (list), ambiguity (str), suggestion (str)."
             )
-            try:
-                response = requests.post(api_url, headers=headers, json={"inputs": prompt}, timeout=30)
-                response.raise_for_status()
-                import json as _json
-                content = response.json()
-                if isinstance(content, list) and content and 'generated_text' in content[0]:
-                    result = _json.loads(content[0]['generated_text'])
-                else:
-                    result = _json.loads(content)
+            result = None
+            for model_id in model_ids:
+                api_url = f"https://api-inference.huggingface.co/models/{model_id}"
+                try:
+                    response = requests.post(api_url, headers=headers, json={"inputs": prompt}, timeout=30)
+                    response.raise_for_status()
+                    import json as _json
+                    content = response.json()
+                    if isinstance(content, list) and content and 'generated_text' in content[0]:
+                        result = _json.loads(content[0]['generated_text'])
+                    else:
+                        result = _json.loads(content)
+                    break  # Success, break out of model loop
+                except Exception as e:
+                    last_error = e
+                    continue  # Try next model
+            if result:
                 ambiguous_terms = result.get("ambiguous_terms", [])
                 ambiguity = result.get("ambiguity", "Medium")
                 suggestion = result.get("suggestion", "Consider making this requirement more specific.")
-            except Exception as e:
+            else:
                 ambiguous_terms = []
                 ambiguity = "Medium"
-                suggestion = f"Hugging Face error: {e}. Falling back to local suggestion."
+                suggestion = f"Hugging Face error: {last_error}. Falling back to local suggestion."
             enhanced_requirements.append(Requirement(
                 id=req.id,
                 text=req.text,
