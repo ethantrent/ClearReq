@@ -1,0 +1,95 @@
+1. Overview
+The AI-Driven Requirements Analyzer is a web application that enables users to upload software requirements documents (text or PDF), 
+processes them through a machine learning pipeline, and provides extracted, classified, and improved requirements using both traditional 
+ML libraries (scikit-learn, pandas, NumPy) and Generative AI (LLMs). The app exposes its ML predictions through a REST API and presents 
+results in a responsive, accessible web interface.
+
+2. Goals & Objectives
+Automate the extraction and classification of requirements from documents.
+Detect ambiguities, inconsistencies, and suggest improvements using GenAI.
+Expose ML predictions and suggestions via a Python-based REST API.
+Demonstrate data pipeline engineering and ML integration in a web app.
+Build a user-friendly, accessible, and responsive interface suitable for business users and engineers.
+
+3. Target Users
+Software engineers, business analysts, and project managers who need to analyze, clarify, and improve requirements documents.
+
+4. Core Features
+Frontend
+Home Page:
+Brief introduction and instructions.
+File upload form (accepts .txt and .pdf).
+Link to results/history page.
+At least one relevant image.
+Results Page (Child Page):
+Display extracted requirements in a list/table.
+Show AI-generated suggestions for improvement.
+Highlight ambiguities or inconsistencies.
+Option to copy/download results.
+Navigation back to home or history.
+History/Dashboard Page (Optional):
+List of past analyses with timestamps.
+
+Backend
+File Ingestion & Preprocessing:
+Parse uploaded files (text/PDF) and extract raw text.
+Preprocess text (tokenization, cleaning) using pandas/NumPy.
+
+ML Pipeline:
+Use scikit-learn (or similar) for basic classification (e.g., functional vs. nonfunctional requirements).
+Integrate with LLM API (e.g., OpenAI) for ambiguity detection and improvement suggestions.
+
+REST API:
+Endpoints for file upload, requirements extraction, and results retrieval.
+Follows Python coding standards and best practices.
+
+General
+Responsive and accessible design.
+Valid HTML/CSS and visually appealing layout.
+Dynamic DOM interactions (loading spinners, interactive lists, etc.).
+Conditional branching (error states, empty uploads, ambiguous requirements).
+Use of objects, arrays, and array methods (map, filter, etc.) in the frontend1.
+Testing scripts for API and data integrity.
+
+5. Technical Requirements
+Frontend: React (preferred), or HTML/CSS/JavaScript (with ES modules and objects1).
+Backend: Python (Flask or FastAPI).
+ML Libraries: pandas, NumPy, scikit-learn.
+GenAI Integration: OpenAI or Hugging Face API for advanced text analysis.
+Cloud Readiness: Containerized (Docker), deployable to AWS/GCP or similar.
+Testing: Unit and integration tests for API and ML pipeline.
+Deployment: Hosted on the web (Vercel/Netlify for frontend, Render/Railway for backend).
+
+6. User Flow
+Home Page:
+User uploads a requirements document.
+Clicks “Analyze.”
+Backend Processing:
+File is parsed and preprocessed.
+ML pipeline extracts and classifies requirements.
+LLM detects ambiguities and generates suggestions.
+Results Page:
+User sees a list of extracted requirements, classifications, and AI-generated suggestions.
+Can copy/download results or view analysis history.
+
+7. Wireframe Descriptions
+Home Page:
+Header, instructions, file upload form, image, link to results/history.
+Results Page:
+Table/list of requirements, ambiguity highlights, suggestions, copy/download buttons, navigation.
+History Page (optional):
+List of previous analyses, clickable for details.
+
+8. Non-Functional Requirements
+Performance: Fast processing for small/medium documents.
+Accessibility: Passes Lighthouse accessibility checks (≥96).
+Security: Validate file types/sizes, sanitize inputs.
+Maintainability: Modular, well-documented code.
+
+9. Success Criteria
+User can upload a document and receive extracted/classified requirements with AI suggestions.
+App is responsive, accessible, and visually appealing.
+REST API exposes ML predictions.
+Code uses objects, arrays, and array methods in the frontend1.
+Testing scripts validate API and ML outputs.
+Meets course rubric and demonstrates skills relevant to ML engineering roles.
